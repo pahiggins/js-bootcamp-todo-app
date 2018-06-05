@@ -17,6 +17,7 @@ document.querySelector('#create-todo').addEventListener('submit', function (e) {
   e.preventDefault();
 
   const todo = {
+    id: uuidv4(),
     text: e.target.elements.todoName.value,
     completed: false
   };
