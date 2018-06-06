@@ -2,11 +2,7 @@
 const getSavedTodos = () => {
   const todosJSON = localStorage.getItem('todos');
 
-  if (todosJSON !== null) {
-    return JSON.parse(todosJSON);
-  } else {
-    return [];
-  }
+  return todosJSON ? JSON.parse(todosJSON) : [];
 };
 
 // Save todos to localStorage
@@ -18,7 +14,7 @@ const saveTodos = todos => {
 const removeTodo = id => {
   const todoIndex = todos.findIndex(todo => todo.id === id);
 
-  if (todoIndex > -1) {
+  if (todoIndex) {
     todos.splice(todoIndex, 1);
   }
 };
@@ -27,7 +23,7 @@ const removeTodo = id => {
 const toggleTodo = id => {
   const todo = todos.find(todo => todo.id === id);
 
-  if (todo !== undefined) {
+  if (todo) {
     todo.completed = !todo.completed;
   }
 };
