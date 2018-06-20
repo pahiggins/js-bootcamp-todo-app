@@ -1,3 +1,5 @@
+'use strict'
+
 let todos = getSavedTodos();
 
 const filters = {
@@ -16,16 +18,19 @@ document.querySelector('#todo-filter').addEventListener('input', (e) => {
 document.querySelector('#create-todo').addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const todo = {
-    id: uuidv4(),
-    text: e.target.elements.todoName.value,
-    completed: false
-  };
-
-  todos.push(todo);
-  saveTodos(todos);
-  renderTodos(todos, filters);
-  e.target.elements.todoName.value = '';
+  const todoText = e.target.elements.todoName.value.trim();
+  if (todoText.length) {
+    const todo = {
+      id: uuidv4(),
+      text: todoText,
+      completed: false
+    };
+  
+    todos.push(todo);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+    e.target.elements.todoName.value = '';
+  }
 });
 
 document.querySelector('#todo-checkbox').addEventListener('change', (e) => {
